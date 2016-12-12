@@ -64,13 +64,7 @@ class InteractiveRecord
 
   def self.find_by(hash)
     sql = "SELECT * FROM #{self.table_name} WHERE #{hash.keys[0].to_s} = ?"
-
-    if hash[hash.keys[0]].class == Fixnum
-      DB[:conn].execute(sql, hash[hash.keys[0]].to_i)
-    else
-      DB[:conn].execute(sql, hash[hash.keys[0]])
-    end
-
+    DB[:conn].execute(sql, hash[hash.keys[0]])
   end
 
 #  options.keys[0] => name
